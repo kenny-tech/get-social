@@ -46,7 +46,7 @@ const Signup = ({ navigation }) => {
                 style={styles.button}
                 onPress={() => handleSignup()}
             >
-                <Text style={{color: 'white'}}>Sign Up</Text>
+                <Text style={{color: 'white', textAlign: 'center'}}>Sign Up</Text>
             </TouchableOpacity>
             <View style={styles.bottomView}>
                 <Text style={styles.textStyle}>Already Signed up? <Text style={{fontWeight: 'bold'}} onPress={() => navigation.navigate('Signin')}>Sign in</Text></Text>
