@@ -48,6 +48,9 @@ const Signup = () => {
             >
                 <Text style={{color: 'white'}}>Sign Up</Text>
             </TouchableOpacity>
+            <View style={styles.bottomView}>
+                <Text style={styles.textStyle}>Already Signed up? <Text style={{fontWeight: 'bold'}}>Sign in</Text></Text>
+            </View>
         </View>
     )
 }
@@ -78,6 +81,19 @@ const styles = StyleSheet.create({
         fontSize: 28,
         color: 'white',
         paddingBottom: 20
+    },
+    bottomView: {
+        width: '100%',
+        height: 50,
+        backgroundColor: '#808080', 
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 0,
+    },
+    textStyle: {
+        color: 'white',
+        fontSize: 16,
     },
 })
 
