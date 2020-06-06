@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
-const Signup = () => {
+const Signin = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
     const handleSignup = () => {
         Alert.alert('Signup')
@@ -33,20 +32,11 @@ const Signup = () => {
                 defaultValue={password}
                 style={styles.textInput}
             />
-            <TextInput 
-                editable={true}
-                secureTextEntry={true}
-                placeholder={'Password confirmation'}
-                placeholderTextColor='white'
-                onChangeText={text => setPasswordConfirmation(text)}
-                defaultValue={passwordConfirmation}
-                style={styles.textInput}
-            />
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => handleSignup()}
             >
-                <Text style={{color: 'white'}}>Sign Up</Text>
+                <Text style={{color: 'white'}}>Sign In</Text>
             </TouchableOpacity>
         </View>
     )
@@ -73,12 +63,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10, 
         paddingHorizontal: 20, 
         borderRadius: 5
-    },
-    logoText: {
-        fontSize: 28,
-        color: 'white',
-        paddingBottom: 20
-    },
+    }
 })
 
-export default Signup;
+export default Signin;
