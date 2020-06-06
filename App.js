@@ -11,7 +11,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Signup" component={SignupScreen} />
+        <Stack.Screen options={{headerShown: false}} name="Signup" component={SignupScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
