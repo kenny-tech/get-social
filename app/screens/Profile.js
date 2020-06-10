@@ -1,28 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const Profile = () => {
-
-    const [fullName, setFullName] = useState('');
 
     return (
         <View style={styles.container}>
             <View style={styles.profilePics}></View>
                 <View>
-                    <TextInput
-                        editable={true}
-                        placeholder={'Full Name'}
-                        style={{ width: 250, height: 40, borderColor: 'gray', borderWidth: 1 }}
-                        defaultValue={fullName}
-                    />
-                    <TouchableOpacity
-                        style={styles.button}
-                    >
-                        <Text style={{color: 'white', textAlign: 'center'}}>Save</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.profileName}>Ben Johnson</Text>
                 </View>
-                <View style={{flexDirection:'row', width: 400, height: 50, backgroundColor: 'white', marginTop: 10, alignItems: 'center'}}>
+                <View style={{flexDirection:'row', width: 400, height: 50, backgroundColor: 'white', marginTop: 20, alignItems: 'center'}}>
                     <Text style={styles.countView}>0 Following</Text>
                     <Text style={styles.countView}>0 Posts</Text>
                 </View>
@@ -64,6 +52,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 50, 
         padding: 15,
         fontWeight: 'bold'
+    },
+    profileName: {
+        fontWeight: 'bold',
+        fontSize: 18
     }
 })
 

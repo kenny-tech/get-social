@@ -5,6 +5,7 @@ import styles from '../styles/style';
 
 const Signup = ({ navigation }) => {
 
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -16,6 +17,14 @@ const Signup = ({ navigation }) => {
     return (
         <View style={styles.authContainer}>
             <Text style={styles.logoText}>Get Social</Text>
+            <TextInput 
+                editable={true}
+                placeholder={'Full Name'}
+                placeholderTextColor='white'
+                onChangeText={text => setName(text)}
+                defaultValue={name}
+                style={styles.textInput}
+            />
             <TextInput 
                 editable={true}
                 keyboardType={'email-address'}

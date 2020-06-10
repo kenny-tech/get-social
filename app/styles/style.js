@@ -25,7 +25,7 @@ export default StyleSheet.create({
     logoText: {
         fontSize: 28,
         color: 'white',
-        paddingBottom: 20
+        paddingBottom: 5
     },
     bottomView: {
         width: '100%',
