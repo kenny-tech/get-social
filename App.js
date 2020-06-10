@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer mode="modal">
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
         <Stack.Screen name="Contact" component={ContactScreen} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen options={{headerShown: false}} name="Signin" component={SigninScreen} />
