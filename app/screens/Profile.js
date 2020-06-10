@@ -22,6 +22,10 @@ const Profile = () => {
                         <Text style={{color: 'white', textAlign: 'center'}}>Save</Text>
                     </TouchableOpacity>
                 </View>
+                <View style={{flexDirection:'row', width: 400, height: 50, backgroundColor: 'white', marginTop: 10, alignItems: 'center'}}>
+                    <Text style={styles.countView}>0 Following</Text>
+                    <Text style={styles.countView}>0 Posts</Text>
+                </View>
         </View>
     )
 }
@@ -33,11 +37,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     profilePics: {
-        width: 150,
-        height: 150,
+        width: 120,
+        height: 120,
         borderColor: 'grey',
         borderWidth: 1,
-        borderRadius: 75,
+        borderRadius: 60,
         margin: 20,
     },
     TextInput: {
@@ -55,6 +59,11 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginVertical: 10,
         backgroundColor: '#08457e'
+    },
+    countView: {
+        marginHorizontal: 50, 
+        padding: 15,
+        fontWeight: 'bold'
     }
 })
 

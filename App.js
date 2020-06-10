@@ -17,7 +17,7 @@ function App() {
         <Stack.Screen name="Profile" component={ProfileScreen} options={{
           headerRight: () => (
             <TouchableOpacity onPress={() => {Alert.alert('Adding contacts...')}}>
-                <Text style={{color: '#00f', marginRight: 10}}>Add contacts</Text>
+                <Text style={{color: '#00f', marginRight: 10, fontSize: 16}}>Add contacts</Text>
             </TouchableOpacity>
           ),
         }}/>
