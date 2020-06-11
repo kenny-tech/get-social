@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TouchableOpacity, Text, Alert } from 'react-native';
 
 import SignupScreen from './app/screens/Signup';
 import SigninScreen from './app/screens/Signin';
