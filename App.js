@@ -7,13 +7,14 @@ import SignupScreen from './app/screens/Signup';
 import SigninScreen from './app/screens/Signin';
 import ProfileScreen from './app/screens/Profile';
 import ContactScreen from './app/screens/Contact';
+import PostScreen from './app/screens/Post';
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer mode="modal">
-      <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}} initialRouteName="Profile">
+      <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}} initialRouteName="Post">
       <Stack.Screen name="Profile" component={ProfileScreen} options={{
           headerRight: () => (
             <TouchableOpacity onPress={() => {Alert.alert("Get Social would like to access your contacts", "We want to connect you with your friends")}}>
@@ -24,6 +25,7 @@ function App() {
         <Stack.Screen options={{headerShown: false}} name="Signup" component={SignupScreen} />
         <Stack.Screen options={{headerShown: false}} name="Signin" component={SigninScreen} />
         <Stack.Screen name="Contact" component={ContactScreen} />
+        <Stack.Screen name="Post" component={PostScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
