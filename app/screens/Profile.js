@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import style from '../styles/style';
 
 const Profile = ({ navigation }) => {
 
@@ -19,6 +20,14 @@ const Profile = ({ navigation }) => {
             <View style={styles.profilePics}></View>
                 <View>
                     <Text style={styles.profileName}>Ben Johnson</Text>
+                </View>
+                <View style={{marginVertical: 20}}>
+                    <TouchableOpacity
+                        style={style.button}
+                        onPress={() => {Alert.alert("Update Profile", "You are currently editing your profile...")}}
+                    >
+                        <Text style={{color: 'white', textAlign: 'center'}}>Edit Profile</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={{flexDirection:'row', width: 400, height: 50, backgroundColor: 'white', marginTop: 20, alignItems: 'center'}}>
                     <Text style={styles.countView}>0 Following</Text>
