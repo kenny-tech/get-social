@@ -1,8 +1,18 @@
 import React from 'react';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
+
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity onPress={() => {Alert.alert("Get Social would like to access your contacts", "We want to connect you with your friends")}}>
+                    <Text style={{color: '#00f', marginRight: 10, fontSize: 16}}>Add contacts</Text>
+                </TouchableOpacity>
+            ),
+        });
+    }, [navigation]);
 
     return (
         <View style={styles.container}>

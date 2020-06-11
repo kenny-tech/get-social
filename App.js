@@ -15,13 +15,7 @@ function App() {
   return (
     <NavigationContainer mode="modal">
       <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}} initialRouteName="Post">
-      <Stack.Screen name="Profile" component={ProfileScreen} options={{
-          headerRight: () => (
-            <TouchableOpacity onPress={() => {Alert.alert("Get Social would like to access your contacts", "We want to connect you with your friends")}}>
-                <Text style={{color: '#00f', marginRight: 10, fontSize: 16}}>Add contacts</Text>
-            </TouchableOpacity>
-          ),
-        }}/>
+        <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen options={{headerShown: false}} name="Signup" component={SignupScreen} />
         <Stack.Screen options={{headerShown: false}} name="Signin" component={SigninScreen} />
         <Stack.Screen name="Contact" component={ContactScreen} />

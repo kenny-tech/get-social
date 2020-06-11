@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Image } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity, Alert } from 'react-native';
 
 import styles from '../styles/style';
 import image1 from '../images/phone.jpg';
 import image2 from '../images/macbookpro.jpg';
 import image3 from '../images/ecommerce.jpg';
 
-const Post = () => {
+const Post = ({ navigation }) => {
+
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity onPress={() => {Alert.alert("Add post", "Adding post...")}}>
+                    <Text style={{color: '#00f', marginRight: 10, fontSize: 16}}>Add Post</Text>
+                </TouchableOpacity>
+            ),
+            title: 'Recent Posts'
+        });
+    }, [navigation]);
 
     const [feed, setFeed] = useState([
         {
