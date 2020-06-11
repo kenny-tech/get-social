@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer mode="modal">
-      <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
+      <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}} initialRouteName="Profile">
       <Stack.Screen name="Profile" component={ProfileScreen} options={{
           headerRight: () => (
             <TouchableOpacity onPress={() => {Alert.alert("Get Social would like to access your contacts", "We want to connect you with your friends")}}>
