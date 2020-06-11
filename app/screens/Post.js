@@ -8,7 +8,7 @@ import image2 from '../images/macbookpro.jpg';
 import image3 from '../images/ecommerce.jpg';
 
 const options = {
-    title: 'Select Avatar',
+    title: 'Select Photo',
     storageOptions: {
       skipBackup: true,
       path: 'images',
@@ -62,16 +62,19 @@ const Post = ({ navigation }) => {
 
     const [feed, setFeed] = useState([
         {
+            id: 1,
             name: 'Kenny',
             location: 'Lekki Phase 1, Lagos',
             url: image1,
         },
         {
+            id: 2,
             name: 'John',
             location: 'Yaba, Lagos',
             url: image2,
         },
         {
+            id: 3,
             name: 'Peter',
             location: 'Ikeja, Lagos',
             url: image3
