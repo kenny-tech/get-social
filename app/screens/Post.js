@@ -51,11 +51,6 @@ const Post = ({ navigation }) => {
 
     React.useLayoutEffect(() => {
         navigation.setOptions({
-            headerRight: () => (
-                <TouchableOpacity onPress={() => postPhoto()}>
-                    <Text style={{color: '#00f', marginRight: 10, fontSize: 16}}>Add Post</Text>
-                </TouchableOpacity>
-            ),
             title: 'Recent Posts'
         });
     }, [navigation]);
@@ -83,6 +78,16 @@ const Post = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.headerView}>
+                <View style={styles.headerViewMargin}>
+                    <Text style={styles.headerText}>Recent Posts</Text>
+                </View>
+                <View style={styles.headerViewMargin}>
+                    <TouchableOpacity onPress={() => postPhoto()}>
+                        <Text style={styles.headerTextRight}>Add Post</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
             <FlatList
                 data={feed}
                 renderItem={({ item }) => (

@@ -11,32 +11,35 @@ import ContactScreen from './app/screens/Contact';
 import PostScreen from './app/screens/Post';
 
 const Tab = createBottomTabNavigator();
-const PostStack = createStackNavigator();
-const ProfileStack = createStackNavigator();
+
 const Stack = createStackNavigator();
 
-export default function App() {
+const TabStack = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Post" component={PostScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+    </Tab.Navigator>  
+  );
+}
+
+const MainStack = () => {
+  return (
+    <Stack.Navigator initialRouteName="Home" mode="modal" headerMode="none">
+      <Stack.Screen name="Home" component={TabStack} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
+      <Stack.Screen name="Signin" component={SigninScreen} />
+      <Stack.Screen name="Contact" component={ContactScreen} />
+    </Stack.Navigator>
+  );
+}
+
+const App = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Timeline">
-          {() => (
-            <PostStack.Navigator screenOptions={{headerTitleAlign: 'center'}} initialRouteName="Signup">
-              <Stack.Screen name="Post" component={PostScreen} />
-              <Stack.Screen options={{headerShown: false}} name="Signup" component={SignupScreen} />
-              <Stack.Screen options={{headerShown: false}} name="Signin" component={SigninScreen} />
-            </PostStack.Navigator>
-          )}
-        </Tab.Screen>
-        <Tab.Screen name="Profile">
-          {() => (
-            <ProfileStack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
-              <Stack.Screen name="Profile" component={ProfileScreen} />
-              <Stack.Screen name="Contact" component={ContactScreen} />
-            </ProfileStack.Navigator>
-          )}
-        </Tab.Screen>
-      </Tab.Navigator>
+      <MainStack />
     </NavigationContainer>
   );
 }
+
+export default App;

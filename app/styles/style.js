@@ -3,8 +3,6 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
     },  
     authContainer : {
         flex: 1,
@@ -45,4 +43,25 @@ export default StyleSheet.create({
         color: 'white',
         fontSize: 16,
     },
+    headerView: {
+        height: 70,
+        paddingTop: 30,
+        backgroundColor: 'white',
+        borderColor: 'lightgrey',
+        flexDirection: "row",
+        justifyContent: "space-between"
+    },
+    headerViewMargin: {
+        marginHorizontal: 10
+    },
+    headerText: {
+        fontSize: 18, 
+        textAlign: 'center', 
+        paddingLeft: 150, 
+        fontWeight: "bold"
+    },
+    headerTextRight: {
+        fontSize: 16, 
+        color: '#00f'
+    }
 });

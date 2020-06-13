@@ -3,21 +3,22 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import style from '../styles/style';
 
-const Profile = ({ navigation }) => {
-
-    React.useLayoutEffect(() => {
-        navigation.setOptions({
-            headerRight: () => (
-                <TouchableOpacity onPress={() => {Alert.alert("Get Social would like to access your contacts", "We want to connect you with your friends")}}>
-                    <Text style={{color: '#00f', marginRight: 10, fontSize: 16}}>Add contacts</Text>
-                </TouchableOpacity>
-            ),
-        });
-    }, [navigation]);
+const Profile = () => {
 
     return (
-        <View style={styles.container}>
-            <View style={styles.profilePics}></View>
+        <View style={style.container}>
+            <View style={style.headerView}>
+                <View style={style.headerViewMargin}>
+                    <Text style={style.headerText}>Profile</Text>
+                </View>
+                <View style={style.headerViewMargin}>
+                    <TouchableOpacity onPress={() => Alert.alert("Add Contact", "Adding contacts...")}>
+                        <Text style={style.headerTextRight}>Add Contact</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <View style={{flex: 1, alignItems: 'center'}}>
+                <View style={styles.profilePics}></View>
                 <View>
                     <Text style={styles.profileName}>Ben Johnson</Text>
                 </View>
@@ -33,6 +34,7 @@ const Profile = ({ navigation }) => {
                     <Text style={styles.countView}>0 Following</Text>
                     <Text style={styles.countView}>0 Posts</Text>
                 </View>
+            </View>
         </View>
     )
 }
@@ -40,7 +42,7 @@ const Profile = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center'
     },
     profilePics: {
@@ -50,6 +52,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 60,
         margin: 20,
+        justifyContent: 'center',
     },
     TextInput: {
         width: 250,
