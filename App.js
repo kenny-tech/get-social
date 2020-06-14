@@ -3,6 +3,7 @@ import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import SignupScreen from './app/screens/Signup';
 import SigninScreen from './app/screens/Signin';
@@ -16,7 +17,28 @@ const Stack = createStackNavigator();
 
 const TabStack = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Post') {
+              iconName = focused
+                ? 'md-paper'
+                : 'md-paper';
+            } else if (route.name === 'Profile') {
+              iconName = focused ? 'md-person' : 'md-person';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'blue',
+          inactiveTintColor: 'gray',
+        }}
+      >
       <Tab.Screen name="Post" component={PostScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>  
