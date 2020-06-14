@@ -13,7 +13,7 @@ const Profile = () => {
                 </View>
                 <View style={style.headerViewMargin}>
                     <TouchableOpacity onPress={() => Alert.alert("Add Contact", "Adding contacts...")}>
-                        <Text style={style.headerTextRight}>Add Contact</Text>
+                        <Text style={style.headerTextRight}>Add Contacts</Text>
                     </TouchableOpacity>
                 </View>
             </View>
