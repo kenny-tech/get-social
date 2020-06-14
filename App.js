@@ -24,8 +24,8 @@ const TabStack = () => {
 
             if (route.name === 'Post') {
               iconName = focused
-                ? 'md-paper'
-                : 'md-paper';
+                ? 'md-image'
+                : 'md-image';
             } else if (route.name === 'Profile') {
               iconName = focused ? 'md-person' : 'md-person';
             }
