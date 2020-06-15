@@ -46,7 +46,7 @@ const TabStack = () => {
 
 const MainStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Home" mode="modal" headerMode="none" initialRouteName="Signup">
+    <Stack.Navigator mode="modal" headerMode="none" initialRouteName="Signin">
       <Stack.Screen name="Home" component={TabStack} />
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="Signin" component={SigninScreen} />

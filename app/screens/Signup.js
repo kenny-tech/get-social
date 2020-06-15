@@ -25,10 +25,7 @@ const Signup = ({ navigation }) => {
                 if(errorMessage === 'Email already taken') {
                     Alert.alert('Error', 'Email already taken')
                 } 
-                else if(errorMessage === '') {
-                    Alert.alert('Success', 'Registration successful. Please login')
-                }
-                else {
+                if(errorMessage === '') {
                     Alert.alert('Success', 'Registration successful. Please login');
                     navigation.navigate('Signin');
                 }
