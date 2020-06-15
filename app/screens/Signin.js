@@ -1,16 +1,33 @@
 import React, { useState } from 'react';
+import {useSelector, useDispatch} from 'react-redux'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
 import styles from '../styles/style';
+import { signin } from '../actions/auth';
 
 const Signin = ({ navigation }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const errorMessage = useSelector(state => state.auth.errorMessage)
+
+    const dispatch = useDispatch();
+
     const handleSignin = () => {
-        Alert.alert('Signin')
+        if(email.trim()!='' && password.trim()!='') {
+            dispatch(signin(email,password));
+            if(errorMessage === 'Invalid Email or Password') {
+                Alert.alert('Error', 'Invalid Email or Password')
+            } 
+            if(errorMessage === '') {
+                navigation.navigate('Home', { screen: 'Post' });
+            }
+        } else {
+            Alert.alert('Error', 'All fields are required');
+        }
     }
+
 
     return (
         <View style={styles.authContainer}>
