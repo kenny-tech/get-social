@@ -51,7 +51,7 @@ const Post = ({ navigation }) => {
 
     React.useLayoutEffect(() => {
         navigation.setOptions({
-            title: 'Recent Posts'
+            title: 'Timeline'
         });
     }, [navigation]);
 
