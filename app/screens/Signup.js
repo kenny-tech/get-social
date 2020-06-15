@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import {useSelector, useDispatch} from 'react-redux'
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 
 import styles from '../styles/style';
+import { signup } from '../actions/auth';
 
 const Signup = ({ navigation }) => {
 
@@ -10,8 +12,29 @@ const Signup = ({ navigation }) => {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
+    const errorMessage = useSelector(state => state.auth.errorMessage)
+
+    const dispatch = useDispatch();
+
     const handleSignup = () => {
-        Alert.alert('Signup')
+        if(name.trim()!='' && email.trim()!='' && password.trim()!='' && passwordConfirmation.trim()!='') {
+            if(password !== passwordConfirmation) {
+                Alert.alert('Error', 'Password & Password Confirmation must match')
+            } else {
+                dispatch(signup(email,password,name));
+                if(errorMessage === 'Email already taken') {
+                    Alert.alert('Error', 'Email already taken')
+                } 
+                else if(errorMessage === '') {
+                    Alert.alert('Success', 'Registration successful. Please login')
+                }
+                else {
+                    Alert.alert('Success', 'Registration successful. Please login')
+                }
+            }
+        } else {
+            Alert.alert('Error', 'All fields are required');
+        }
     }
 
     return (

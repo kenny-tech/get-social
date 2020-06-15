@@ -30,7 +30,6 @@ const TabStack = () => {
               iconName = focused ? 'md-person' : 'md-person';
             }
 
-            // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
@@ -47,7 +46,7 @@ const TabStack = () => {
 
 const MainStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Home" mode="modal" headerMode="none">
+    <Stack.Navigator initialRouteName="Home" mode="modal" headerMode="none" initialRouteName="Signup">
       <Stack.Screen name="Home" component={TabStack} />
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="Signin" component={SigninScreen} />
