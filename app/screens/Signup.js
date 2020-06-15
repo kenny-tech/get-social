@@ -29,7 +29,8 @@ const Signup = ({ navigation }) => {
                     Alert.alert('Success', 'Registration successful. Please login')
                 }
                 else {
-                    Alert.alert('Success', 'Registration successful. Please login')
+                    Alert.alert('Success', 'Registration successful. Please login');
+                    navigation.navigate('Signin');
                 }
             }
         } else {
