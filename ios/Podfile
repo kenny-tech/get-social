@@ -81,6 +81,8 @@ target 'GetSocial' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'ReactNativeGetLocation', :path => '../node_modules/react-native-get-location'
+
   target 'GetSocialTests' do
     inherit! :complete
     # Pods for testing

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, Alert } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+import GetLocation from 'react-native-get-location'
 
 import styles from '../styles/style';
 import image1 from '../images/phone.jpg';
@@ -16,6 +17,24 @@ const options = {
 };
 
 const Post = ({ navigation }) => {
+
+    useEffect(() => {
+        getUserLocation();
+    }, [])
+
+    getUserLocation = () => {
+        GetLocation.getCurrentPosition({
+            enableHighAccuracy: true,
+            timeout: 15000,
+        })
+        .then(location => {
+            console.log(location);
+        })
+        .catch(error => {
+            const { code, message } = error;
+            console.warn(code, message);
+        })
+    }
 
     const [imageSelected, setImageSelected] = useState(false);
     const [imageSource, setImageSource] = useState('');
@@ -44,10 +63,11 @@ const Post = ({ navigation }) => {
                 setImageSelected(true);
                 setImageUri(response.uri);
                 setBase64Value(base64Value);
-
+                console.log(base64Value);
             }
           });
     }
+    
 
     React.useLayoutEffect(() => {
         navigation.setOptions({
