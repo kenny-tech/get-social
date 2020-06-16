@@ -43,10 +43,7 @@ const PostPreview = ({ route, navigation }) => {
                 <TouchableOpacity onPress={() => navigation.goBack()} style={{paddingVertical: 10}}>
                     <Text style={{textAlign: 'center'}}>Cancel</Text>
                 </TouchableOpacity>
-
-            </View>
-
-            
+            </View>            
         </View>
     )
 }
