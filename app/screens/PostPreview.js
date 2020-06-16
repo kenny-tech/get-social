@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'
 
-import { post_photo } from '../actions/photo'
+import { post_photo } from '../actions/photo';
 import styles from '../styles/style';
 
 const PostPreview = ({ route, navigation }) => {
