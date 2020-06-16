@@ -30,10 +30,10 @@ export const signin = (email,password) => async dispatch => {
       password: password,
     })
     .then((response) => {
-      console.log('User data: ',response.data);
+      // console.log('User data: ',response.data.data);
       dispatch({
           type: SIGNIN,
-          payload: response.data
+          payload: response.data.data
       });
     })
     .catch((error) => {
