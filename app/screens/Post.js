@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import {useSelector, useDispatch} from 'react-redux'
 import { View, Text, FlatList, Image, TouchableOpacity, Alert } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+// import GetLocation from 'react-native-get-location'
 
 import styles from '../styles/style';
 import image1 from '../images/phone.jpg';
@@ -17,10 +19,40 @@ const options = {
 
 const Post = ({ navigation }) => {
 
+    // useEffect(() => {
+    //     getUserLocation();
+    // }, [])
+
+    // getUserLocation = () => {
+    //     GetLocation.getCurrentPosition({
+    //         enableHighAccuracy: true,
+    //         timeout: 15000,
+    //     })
+    //     .then(location => {
+    //         console.log(location);
+    //         setLatitude(location.latitude);
+    //         setLongitude(location.longitude);
+    //         console.log('Latitude: ',latitude);
+    //         console.log('Longitude: ',longitude);
+    //     })
+    //     .catch(error => {
+    //         const { code, message } = error;
+    //         console.warn(code, message);
+    //     })
+    // }
+
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+            title: 'Timeline'
+        });
+    }, [navigation]);
+
     const [imageSelected, setImageSelected] = useState(false);
     const [imageSource, setImageSource] = useState('');
     const [imageUri, setImageUri] = useState('');
     const [base64Value, setBase64Value] = useState('');
+    // const [latitude, setLatitude] = useState('');
+    // const [longitude, setLongitude] = useState('');
 
     const postPhoto = () => {
         ImagePicker.showImagePicker(options, (response) => {
@@ -39,21 +71,23 @@ const Post = ({ navigation }) => {
                 // You can also display the image using data:
                 // const source = { uri: 'data:image/jpeg;base64,' + response.data };
                 const base64Value = response.data;
+
                 
                 setImageSource(source);
                 setImageSelected(true);
                 setImageUri(response.uri);
                 setBase64Value(base64Value);
-
+                console.log('AAA: ',imageUri);
+                previewPost(base64Value)
             }
           });
     }
 
-    React.useLayoutEffect(() => {
-        navigation.setOptions({
-            title: 'Timeline'
+    const previewPost = (base64Value) => {
+        navigation.navigate('PostPreview', {
+            base64Image: base64Value,
         });
-    }, [navigation]);
+    }
 
     const [feed, setFeed] = useState([
         {

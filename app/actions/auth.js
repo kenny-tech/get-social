@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { SIGNUP, SIGNUP_ERROR, SIGNIN, SIGNIN_ERROR } from './types';
-
 import { baseurl } from '../../config/config';
 
 export const signup = (email,password,name) => async dispatch => {
@@ -30,10 +29,10 @@ export const signin = (email,password) => async dispatch => {
       password: password,
     })
     .then((response) => {
-      console.log('User data: ',response.data);
+      // console.log('User data: ',response.data.data);
       dispatch({
           type: SIGNIN,
-          payload: response.data
+          payload: response.data.data
       });
     })
     .catch((error) => {

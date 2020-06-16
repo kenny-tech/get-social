@@ -10,6 +10,7 @@ import SigninScreen from './app/screens/Signin';
 import ProfileScreen from './app/screens/Profile';
 import ContactScreen from './app/screens/Contact';
 import PostScreen from './app/screens/Post';
+import PostPreviewScreen from './app/screens/PostPreview'
 
 const Tab = createBottomTabNavigator();
 
@@ -51,6 +52,7 @@ const MainStack = () => {
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="Signin" component={SigninScreen} />
       <Stack.Screen name="Contact" component={ContactScreen} />
+      <Stack.Screen name="PostPreview" component={PostPreviewScreen} />
     </Stack.Navigator>
   );
 }
