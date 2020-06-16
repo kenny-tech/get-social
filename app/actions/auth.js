@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { SIGNUP, SIGNUP_ERROR, SIGNIN, SIGNIN_ERROR } from './types';
-
 import { baseurl } from '../../config/config';
 
 export const signup = (email,password,name) => async dispatch => {

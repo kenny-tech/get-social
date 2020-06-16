@@ -71,14 +71,22 @@ const Post = ({ navigation }) => {
                 // You can also display the image using data:
                 // const source = { uri: 'data:image/jpeg;base64,' + response.data };
                 const base64Value = response.data;
+
                 
                 setImageSource(source);
                 setImageSelected(true);
                 setImageUri(response.uri);
                 setBase64Value(base64Value);
-                console.log(base64Value);
+                console.log('AAA: ',imageUri);
+                previewPost(base64Value)
             }
           });
+    }
+
+    const previewPost = (base64Value) => {
+        navigation.navigate('PostPreview', {
+            base64Image: base64Value,
+        });
     }
 
     const [feed, setFeed] = useState([
