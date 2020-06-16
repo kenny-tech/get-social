@@ -25,6 +25,13 @@ export default StyleSheet.create({
         paddingHorizontal: 20, 
         borderRadius: 5,
     },
+    buttonBlue: {
+        width: 250, 
+        backgroundColor: '#0000ff', 
+        paddingVertical: 10, 
+        paddingHorizontal: 20, 
+        borderRadius: 5,
+    },
     logoText: {
         fontSize: 28,
         color: 'white',
