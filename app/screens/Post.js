@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
-import {useSelector, useDispatch} from 'react-redux'
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, Alert } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-// import GetLocation from 'react-native-get-location'
 
 import styles from '../styles/style';
-import image1 from '../images/phone.jpg';
-import image2 from '../images/macbookpro.jpg';
-import image3 from '../images/ecommerce.jpg';
+import { baseurl } from '../../config/config'
 
 const options = {
     title: 'Select Photo',
@@ -19,28 +15,6 @@ const options = {
 
 const Post = ({ navigation }) => {
 
-    // useEffect(() => {
-    //     getUserLocation();
-    // }, [])
-
-    // getUserLocation = () => {
-    //     GetLocation.getCurrentPosition({
-    //         enableHighAccuracy: true,
-    //         timeout: 15000,
-    //     })
-    //     .then(location => {
-    //         console.log(location);
-    //         setLatitude(location.latitude);
-    //         setLongitude(location.longitude);
-    //         console.log('Latitude: ',latitude);
-    //         console.log('Longitude: ',longitude);
-    //     })
-    //     .catch(error => {
-    //         const { code, message } = error;
-    //         console.warn(code, message);
-    //     })
-    // }
-
     React.useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Timeline'
@@ -51,8 +25,19 @@ const Post = ({ navigation }) => {
     const [imageSource, setImageSource] = useState('');
     const [imageUri, setImageUri] = useState('');
     const [base64Value, setBase64Value] = useState('');
-    // const [latitude, setLatitude] = useState('');
-    // const [longitude, setLongitude] = useState('');
+    const [photos, setPhotos] = useState([]);
+
+    const loadPhotos = () => {
+        fetch(baseurl + '/photos')
+        .then(response => response.json())
+        .then(response => (setPhotos(response)))
+        .catch(error => console.log(error))
+    }
+
+    useEffect(() => {
+        loadPhotos()
+    }, []);
+
 
     const postPhoto = () => {
         ImagePicker.showImagePicker(options, (response) => {
@@ -77,7 +62,6 @@ const Post = ({ navigation }) => {
                 setImageSelected(true);
                 setImageUri(response.uri);
                 setBase64Value(base64Value);
-                console.log('AAA: ',imageUri);
                 previewPost(base64Value)
             }
           });
@@ -88,27 +72,6 @@ const Post = ({ navigation }) => {
             base64Image: base64Value,
         });
     }
-
-    const [feed, setFeed] = useState([
-        {
-            id: 1,
-            name: 'Kenny',
-            location: 'Lekki Phase 1, Lagos',
-            url: image1,
-        },
-        {
-            id: 2,
-            name: 'John',
-            location: 'Yaba, Lagos',
-            url: image2,
-        },
-        {
-            id: 3,
-            name: 'Peter',
-            location: 'Ikeja, Lagos',
-            url: image3
-        }
-    ])
 
     return (
         <View style={styles.container}>
@@ -123,14 +86,13 @@ const Post = ({ navigation }) => {
                 </View>
             </View>
             <FlatList
-                data={feed}
+                data={photos}
                 renderItem={({ item }) => (
                     <View>
                         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 20}}>
-                            <Text style={{fontWeight: 'bold'}}>{item.name}</Text>
+                            <Text style={{fontWeight: 'bold'}}>{item.user}</Text>
                         </View>
-                        <Image source={item.url} style={{width: 370, height: 200, marginVertical: 10, marginHorizontal: 20}}/>
-                        <Text style={{marginHorizontal: 20, textAlign: 'center', fontStyle: 'italic'}}>{item.location}</Text>
+                        <Image source={{uri: item.picture}} style={{width: 370, height: 200, marginVertical: 10, marginHorizontal: 20}}/>
                     </View>
                 )}
                 keyExtractor={item => item.id}
