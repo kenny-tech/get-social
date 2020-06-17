@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
-
-import { View, Text, StyleSheet, TouchableOpacity, Alert, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert, TextInput, Image } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
 
 import { baseurl } from '../../config/config'
 import style from '../styles/style';
+
+const options = {
+    title: 'Select Photo',
+    storageOptions: {
+      skipBackup: true,
+      path: 'images',
+    },
+};
 
 const Profile = () => {
 
     const [editProfile, setEditProfile] = useState(false);
     const [name, setName] = useState('');
     const [userDetails, setUserDetails] = useState([]);
+    const [imageSelected, setImageSelected] = useState(false);
+    const [imageSource, setImageSource] = useState('');
+    const [imageUri, setImageUri] = useState('');
+    const [base64Value, setBase64Value] = useState('');
+    const [profilePicture, setProfilePicture] = useState(userDetails.profilePicture);
 
     const user = useSelector(state => state.auth.user);
 
@@ -19,6 +32,7 @@ const Profile = () => {
         fetch(baseurl + '/getUser/' + userId)
         .then(response => response.json())
         .then(response => setUserDetails(response.data))
+        .then(response => console.log('user details: ',userDetails.profilePicture))
         .catch(error => console.log(error))
     }
 
@@ -48,6 +62,50 @@ const Profile = () => {
         }
     }
 
+    const updateProfilePicture = () => {
+        ImagePicker.showImagePicker(options, (response) => {
+          
+            if (response.didCancel) {
+                // console.log('User cancelled image picker');
+                setImageSelected(false);
+            } else if (response.error) {
+                // console.log('ImagePicker Error: ', response.error);
+                setImageSelected(false);
+            } else if (response.customButton) {
+                // console.log('User tapped custom button: ', response.customButton);
+                setImageSelected(false);
+            } else {
+                const source = { uri: response.uri };
+                // You can also display the image using data:
+                // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+                const base64Value = response.data;
+                
+                setImageSource(source);
+                setImageSelected(true);
+                setImageUri(response.uri);
+                setBase64Value(base64Value);
+                // console.log('Base 64 profile pics : ', base64Value);
+                saveProfilePicture(base64Value)
+            }
+        });
+    }
+
+    const saveProfilePicture = (base64Value) => {
+        const userId = user.id;
+        const data = { base64ProfilePic: base64Value };
+        fetch(baseurl + '/updateProfilePicture/' + userId, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .catch(error => console.log(error))
+        Alert.alert('Success', 'Profile picture successfully updated');
+        getProfile();
+    }
+ 
     return (
         <View style={style.container}>
             <View style={style.headerView}>
@@ -61,7 +119,11 @@ const Profile = () => {
                 </View>
             </View>
             <View style={{flex: 1, alignItems: 'center'}}>
-                <View style={styles.profilePics}></View>
+                <TouchableOpacity onPress={() => updateProfilePicture()}>
+                    {
+                        profilePicture === '' ? (<Image style={styles.profilePics} />) : (<Image source={{uri: userDetails.profilePicture}} style={styles.profilePics} />)
+                    }
+                </TouchableOpacity>
                 {
                     !editProfile ? (
                     <View>
