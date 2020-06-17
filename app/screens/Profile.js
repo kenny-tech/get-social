@@ -24,6 +24,7 @@ const Profile = () => {
     const [imageUri, setImageUri] = useState('');
     const [base64Value, setBase64Value] = useState('');
     const [profilePicture, setProfilePicture] = useState(userDetails.profilePicture);
+    const [totalUserPosts, setTotalUserPosts] = useState(0);
 
     const user = useSelector(state => state.auth.user);
 
@@ -37,7 +38,8 @@ const Profile = () => {
     }
 
     useEffect(() => {
-        getProfile()
+        getProfile();
+        countUserPhotos();
     }, []);
 
     const updateProfile = () => {
@@ -105,6 +107,14 @@ const Profile = () => {
         Alert.alert('Success', 'Profile picture successfully updated');
         getProfile();
     }
+
+    const countUserPhotos = () => {
+        const userId = user.id;
+        fetch(baseurl + '/countUserPhotos/' + userId)
+        .then(response => response.json())
+        .then(response => setTotalUserPosts(response.data))
+        .catch(error => console.log(error))
+    }
  
     return (
         <View style={style.container}>
@@ -163,9 +173,8 @@ const Profile = () => {
                         </View>
                     )
                 }
-                <View style={{flexDirection:'row', width: 400, height: 50, backgroundColor: 'white', marginTop: 20, alignItems: 'center'}}>
-                    <Text style={styles.countView}>0 Following</Text>
-                    <Text style={styles.countView}>0 Posts</Text>
+                <View style={{width: 400, height: 50, backgroundColor: 'white', marginTop: 20, alignItems: 'center'}}>
+                    <Text style={styles.countView}>{totalUserPosts} Posts</Text>
                 </View>
             </View>
         </View>
@@ -204,9 +213,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#08457e'
     },
     countView: {
-        marginHorizontal: 50, 
         padding: 15,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
     profileName: {
         fontWeight: 'bold',
