@@ -64,7 +64,7 @@ export default StyleSheet.create({
     headerText: {
         fontSize: 18, 
         textAlign: 'center', 
-        paddingLeft: 150, 
+        paddingLeft: 30, 
         fontWeight: "bold"
     },
     headerTextRight: {

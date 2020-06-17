@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import { useDispatch } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 
+import { logout } from '../actions/auth';
 import styles from '../styles/style';
 import { baseurl } from '../../config/config'
 
@@ -26,6 +28,8 @@ const Post = ({ navigation }) => {
     const [imageUri, setImageUri] = useState('');
     const [base64Value, setBase64Value] = useState('');
     const [photos, setPhotos] = useState([]);
+
+    const dispatch = useDispatch();
 
     const loadPhotos = () => {
         fetch(baseurl + '/photos')
@@ -73,9 +77,19 @@ const Post = ({ navigation }) => {
         });
     }
 
+    const logoutUser = () => {
+        dispatch(logout());
+        navigation.navigate('Signin');
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.headerView}>
+                <View style={styles.headerViewMargin}>
+                    <TouchableOpacity onPress={() => logoutUser()}>
+                        <Text style={styles.headerTextRight}>Logout</Text>
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.headerViewMargin}>
                     <Text style={styles.headerText}>Recent Posts</Text>
                 </View>
