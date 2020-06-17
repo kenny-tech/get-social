@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { SIGNUP, SIGNUP_ERROR, SIGNIN, SIGNIN_ERROR } from './types';
+import { SIGNUP, SIGNUP_ERROR, SIGNIN, SIGNIN_ERROR, LOGOUT } from './types';
 import { baseurl } from '../../config/config';
 
 export const signup = (email,password,name) => async dispatch => {
@@ -42,4 +42,10 @@ export const signin = (email,password) => async dispatch => {
           payload: error.response.data.message
         });
     })
+}
+
+export const logout = () => {
+  return {
+    type: LOGOUT
+  }
 }

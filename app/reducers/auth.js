@@ -1,4 +1,4 @@
-import { SIGNUP, SIGNUP_ERROR, SIGNIN, SIGNIN_ERROR } from "../actions/types";
+import { SIGNUP, SIGNUP_ERROR, SIGNIN, SIGNIN_ERROR, LOGOUT } from "../actions/types";
   
 export default (state=[], action) => {
     switch(action.type) {
@@ -24,6 +24,11 @@ export default (state=[], action) => {
                 ...state, 
                 errorMessage: action.payload,
             }    
+        case LOGOUT:
+            return {
+                state: []
+            } 
+            
         default:
             return state;
     }

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity, Alert, TextInput, Image } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
-import { baseurl } from '../../config/config'
+import { baseurl } from '../../config/config';
+import { logout } from '../actions/auth';
 import style from '../styles/style';
 
 const options = {
@@ -14,7 +15,7 @@ const options = {
     },
 };
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
 
     const [editProfile, setEditProfile] = useState(false);
     const [name, setName] = useState('');
@@ -27,6 +28,8 @@ const Profile = () => {
     const [totalUserPosts, setTotalUserPosts] = useState(0);
 
     const user = useSelector(state => state.auth.user);
+
+    const dispatch = useDispatch();
 
     const getProfile = () => {
         const userId = user.id;
@@ -115,10 +118,20 @@ const Profile = () => {
         .then(response => setTotalUserPosts(response.data))
         .catch(error => console.log(error))
     }
+
+    const logoutUser = () => {
+        dispatch(logout());
+        navigation.navigate('Signin');
+    }
  
     return (
         <View style={style.container}>
             <View style={style.headerView}>
+                <View style={style.headerViewMargin}>
+                    <TouchableOpacity onPress={() => logoutUser()}>
+                        <Text style={style.headerTextRight}>Logout</Text>
+                    </TouchableOpacity>
+                </View>
                 <View style={style.headerViewMargin}>
                     <Text style={style.headerText}>Profile</Text>
                 </View>
